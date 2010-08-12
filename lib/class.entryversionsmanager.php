@@ -3,7 +3,7 @@
 require_once(TOOLKIT . '/class.datasource.php');
 require_once(TOOLKIT . '/class.xsltprocess.php');
 
-Class VersionManager {
+Class EntryVersionsManager {
 	
 	public function Context() {
 		if(class_exists('Frontend')){
@@ -29,10 +29,12 @@ Class VersionManager {
 		
 		if ($is_update) $new_version_number--;
 		
+		if ($new_version_number == 0) $new_version_number++;
+		
 		unset($fields['entry-versions']);
 		
 		// run custom DS to get the built XML of this entry
-		$ds = new EntryVersioningXMLDataSource(self::Context(), null, false);
+		$ds = new EntryVersionsXMLDataSource(self::Context(), null, false);
 		$ds->dsParamINCLUDEDELEMENTS = array_keys($fields);
 		$ds->dsParamFILTERS['id'] = $entry->get('id');
 		$ds->dsSource = (string)$entry->get('section_id');
@@ -44,7 +46,7 @@ Class VersionManager {
 		$proc = new XsltProcess;
 		$data = $proc->process(
 			$entry_xml->generate(),
-			file_get_contents(EXTENSIONS . '/entry_versioning/lib/entry-version.xsl'),
+			file_get_contents(EXTENSIONS . '/entry_versions/lib/entry-version.xsl'),
 			array(
 				'version' => $new_version_number,
 				'created-by' => ((self::Context()->Author) ? self::Context()->Author->getFullName() : ''),
@@ -119,7 +121,7 @@ Class VersionManager {
 	
 }
 
-Class EntryVersioningXMLDataSource extends Datasource{
+Class EntryVersionsXMLDataSource extends Datasource{
 	
 	public $dsParamROOTELEMENT = 'entries';
 	public $dsSource = null;

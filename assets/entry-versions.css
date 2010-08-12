@@ -1,30 +1,30 @@
-div.field-entry_version {
+div.field-entry_versions {
 	margin-bottom: 1.75em;
 }
 
-div.field-entry_version p {
+div.field-entry_versions p {
 	margin: 0;
 }
 
-div.field-entry_version span {
+div.field-entry_versions span {
 	text-align: left;
 }
 
-div.field-entry_version div.container {
+div.field-entry_versions div.container {
 	padding: 10px;
 	background-color: #F5F5F3;
 	border: 1px solid #E4E4DE;
 	overflow: auto;
 }
 
-div.field-entry_version label {
+div.field-entry_versions label {
 	float: left;
 	display: block;
 	padding: 0 5px 5px 0;
 	margin: 0;
 }
 
-div.field-entry_version ol {
+div.field-entry_versions ol {
 	margin: 8px 0 0 0;
 	padding: 5px 0 0 0;
 	list-style-type: disc;
@@ -33,7 +33,7 @@ div.field-entry_version ol {
 	clear: both;
 }
 
-div.field-entry_version li span {
+div.field-entry_versions li span {
 	border: none;
 	padding: 0;
 	display: inline;
@@ -44,49 +44,49 @@ div.field-entry_version li span {
 	color: #333;
 }
 
-div.field-entry_version li span.date {
+div.field-entry_versions li span.date {
 	color: #aaa;
 }
 
-div.field-entry_version li {
+div.field-entry_versions li {
 	padding: 2px 4px 2px 0;
 	list-style-position: outside;
 	margin-left: 15px;
 }
 
-div.field-entry_version ol a {
+div.field-entry_versions ol a {
 	outline: none;
 	text-decoration: underline;
 }
 
-div.field-entry_version li.viewing {
+div.field-entry_versions li.viewing {
 	color: #000;
 }
 
-div.field-entry_version ol li.viewing a {
+div.field-entry_versions ol li.viewing a {
 	color: #000;
 	cursor: text;
 	text-decoration: none;
 }
 
-div.field-entry_version ol li.viewing a span.version {
+div.field-entry_versions ol li.viewing a span.version {
 	color: #5072BF;
 	text-decoration: underline;
 	cursor: pointer;
 	font-weight: normal;
 }
 
-div.field-entry_version ol li.viewing a:hover span.version,
-div.field-entry_version ol li.viewing a:focus span.version,
-div.field-entry_version a.more:hover {
+div.field-entry_versions ol li.viewing a:hover span.version,
+div.field-entry_versions ol li.viewing a:focus span.version,
+div.field-entry_versions a.more:hover {
 	color: #000;
 }
 
-div.field-entry_version li.limit {
+div.field-entry_versions li.limit {
 	display: none;
 }
 
-div.field-entry_version a.more {
+div.field-entry_versions a.more {
 	margin: 5px 0 0 3px;
 	display: inline-block;
 	color: #aaa;

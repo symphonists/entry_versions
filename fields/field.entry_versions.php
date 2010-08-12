@@ -1,9 +1,9 @@
 <?php
 	
-	require_once(EXTENSIONS . '/entry_versioning/lib/class.versionmanager.php');
-	require_once(EXTENSIONS . '/entry_versioning/lib/class.domconverter.php');
+	require_once(EXTENSIONS . '/entry_versions/lib/class.entryversionsmanager.php');
+	require_once(EXTENSIONS . '/entry_versions/lib/class.domconverter.php');
 	
-	Class fieldEntry_Version extends Field{	
+	Class fieldEntry_Versions extends Field{	
 		
 		function __construct(&$parent){
 			parent::__construct($parent);
@@ -97,7 +97,7 @@
 			$revision_history->setAttribute('class', 'revisions');
 			
 			$i = 0;
-			$entries = VersionManager::entryHistory($entry_id);
+			$entries = EntryVersionsManager::entryHistory($entry_id);
 			foreach($entries as $entry) {
 				
 				$meta = $entry->documentElement;
@@ -154,7 +154,7 @@
 			$entry_id = $wrapper->getAttribute('id');
 			
 			$versions = new XMLElement('versions');
-			$entries = VersionManager::entryHistory($entry_id);
+			$entries = EntryVersionsManager::entryHistory($entry_id);
 			foreach($entries as $entry) {				
 				$versions->appendChild(DOMConverter::toXMLElement($entry));
 			}

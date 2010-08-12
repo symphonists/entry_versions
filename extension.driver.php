@@ -1,14 +1,14 @@
 <?php
 	
-	require_once(EXTENSIONS . '/entry_versioning/lib/class.versionmanager.php');
+	require_once(EXTENSIONS . '/entry_versions/lib/class.entryversionsmanager.php');
 	
-	class extension_entry_versioning extends Extension {
+	class extension_entry_versions extends Extension {
 		
 		public function about() {
 			return array(
 				'name'			=> 'Entry Versions',
-				'version'		=> '0.1 Alpha',
-				'release-date'	=> '2010-06-22',
+				'version'		=> '0.1',
+				'release-date'	=> '2010-08-12',
 				'author'		=> array(
 					'name'			=> 'Nick Dunn',
 					'website'		=> 'http://nick-dunn.co.uk'
@@ -18,14 +18,15 @@
 		}
 		
 		public function uninstall() {
-			Symphony::Database()->query("DROP TABLE `tbl_fields_entry_version`");
+			Symphony::Database()->query("DROP TABLE `tbl_fields_entry_versions`");
 		}
 		
 		public function install() {
 			Symphony::Database()->query(
-				"CREATE TABLE IF NOT EXISTS `tbl_fields_entry_version` (
+				"CREATE TABLE IF NOT EXISTS `tbl_fields_entry_versions` (
 					`id` int(11) NOT NULL auto_increment,
 					`field_id` int(11) NOT NULL,
+					`show_in_publish` enum('yes','no') default 'no',
 					PRIMARY KEY (`id`)
 				)"
 			);
@@ -68,8 +69,8 @@
 			$callback = Administration::instance()->getPageCallback();
 					
 			if ($page instanceof contentPublish and in_array($page->_context['page'], array('new', 'edit'))) {
-				$page->addStylesheetToHead(URL . '/extensions/entry_versioning/assets/entry-versioning.css', 'screen', 9359351);
-				$page->addScriptToHead(URL . '/extensions/entry_versioning/assets/entry-versioning.js', 9359352);
+				$page->addStylesheetToHead(URL . '/extensions/entry_versions/assets/entry-versions.css', 'screen', 9359351);
+				$page->addScriptToHead(URL . '/extensions/entry_versions/assets/entry-versions.js', 9359352);
 			}
 			
 		}
@@ -81,7 +82,7 @@
 			$entry = $context['entry'];
 			$fields = $context['fields'];
 			
-			$version = VersionManager::saveVersion($entry, $fields, ($fields['entry-versions'] != 'yes'));
+			$version = EntryVersionsManager::saveVersion($entry, $fields, ($fields['entry-versions'] != 'yes'));
 			$context['messages'][] = array('version', 'passed', $version);
 			
 		}
@@ -99,7 +100,7 @@
 			
 			if (!isset($version)) return false;
 
-			if ($entry) $context['entry'] = VersionManager::unserializeEntry($entry_id, $version);
+			if ($entry) $context['entry'] = EntryVersionsManager::unserializeEntry($entry_id, $version);
 			
 		}
 		

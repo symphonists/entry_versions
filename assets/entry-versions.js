@@ -8,10 +8,10 @@
 	
 
 /*-----------------------------------------------------------------------------
-	Entry Versioning
+	Entry Versions
 -----------------------------------------------------------------------------*/
 
-	var EntryVersioning = {
+	var EntryVersions = {
 		
 		$field: null,
 		$revisions: null,
@@ -21,7 +21,7 @@
 		init: function() {
 			var self = this;
 			
-			this.$field = jQuery('.field-entry_version div');
+			this.$field = jQuery('.field-entry_versions div');
 			this.$revisions = this.$field.find('ol.revisions');
 			
 			var total_revisions = this.$revisions.find('li').length;
@@ -30,7 +30,7 @@
 			
 			this.$revisions.find('li:gt('+(show_until-1)+')').addClass('limit');
 			
-			if (show_until <= total_revisions) {
+			if (show_until < total_revisions) {
 				this.$field.append('<a href="#" class="more">' + Symphony.Language.get('Show all versions') + '</a>');
 				this.$more = this.$field.find('a.more');
 
@@ -46,5 +46,5 @@
 	};
 	
 	jQuery(document).ready(function() {
-		EntryVersioning.init();
+		EntryVersions.init();
 	});
