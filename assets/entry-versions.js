@@ -3,7 +3,9 @@
 -----------------------------------------------------------------------------*/	 
 
 	Symphony.Language.add({
-		'Show all versions': false
+		'Show all versions': false,
+		'Save as new version': false,
+		'Update this version': false
 	}); 
 	
 
@@ -40,6 +42,18 @@
 					jQuery(this).remove();
 				});
 			}
+			
+			var submit_new = jQuery('input[name="action[save]"]');
+			submit_new.val('Save as new version');
+			
+			var submit_update = submit_new.clone();
+			submit_update.val('Update this version');
+			submit_new.after(submit_update);
+			
+			var update_checkbox = jQuery('input[name="fields[entry-versions]"]');
+			
+			submit_new.bind('click', function() { update_checkbox.attr('checked', true); });
+			submit_update.bind('click', function() { update_checkbox.attr('checked', false); });
 			
 		}
 		

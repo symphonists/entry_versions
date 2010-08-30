@@ -18,17 +18,21 @@ div.field-entry_versions div.container {
 }
 
 div.field-entry_versions label {
-	float: left;
+	/*float: left;
 	display: block;
 	padding: 0 5px 5px 0;
-	margin: 0;
+	margin: 0;*/
+	position: absolute;
+	top: -9999em;
+	left: -9999em;
 }
 
 div.field-entry_versions ol {
-	margin: 8px 0 0 0;
+	/*margin: 8px 0 0 0;
 	padding: 5px 0 0 0;
+	border-top: 1px solid #ddd;*/
+	margin: 0;
 	list-style-type: disc;
-	border-top: 1px solid #ddd;
 	color: #aaa;
 	clear: both;
 }
