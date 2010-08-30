@@ -90,7 +90,15 @@ Class EntryVersionsManager {
 		$files = General::listStructure(MANIFEST . '/versions/' . $entry_id . '/', '/.xml$/', false, 'desc');
 		if (!is_array($files['filelist'])) $files['filelist'] = array();
 		
-		return count($files['filelist']);
+		natsort($files['filelist']);
+		$files['filelist'] = array_reverse($files['filelist']);
+		
+		$file = reset($files['filelist']);
+		
+		$entry = new DomDocument();
+		$entry->load(MANIFEST . '/versions/' . $entry_id . '/' . $file);
+		
+		return $entry;
 		
 	}
 	
