@@ -1,6 +1,6 @@
 # Entry Versions
 
-* Version: 0.2
+* Version: 0.3
 * Author: Nick Dunn <http://github.com/nickdunn/>
 * Build Date: 2010-08-30
 * Requirements: Symphony 2.1.0
