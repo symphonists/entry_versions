@@ -8,8 +8,7 @@
 		function __construct(&$parent){
 			parent::__construct($parent);
 			$this->_name = 'Entry Versions';
-			$this->_required = false;			
-			$this->set('hide', 'no');
+			$this->_required = false;
 		}
 				
 		public function processRawFieldData($data, &$status, $simulate=false, $entry_id=null) {	
@@ -42,9 +41,9 @@
 			$order = $this->get('sortorder');
 			
 			$label = Widget::Label();
-			$input = Widget::Input("fields[{$order}][show_in_publish]", 'yes', 'checkbox');
-			if ($this->get('show_in_publish') == 'yes') $input->setAttribute('checked', 'checked');
-			$label->setValue($input->generate() . ' Show version history on publish page');
+			$input = Widget::Input("fields[{$order}][hide_in_publish]", 'yes', 'checkbox');
+			if ($this->get('show_in_publish') == 'no') $input->setAttribute('checked', 'checked');
+			$label->setValue($input->generate() . ' Hide version history list on publish page');
 			$wrapper->appendChild($label);
 			
 		}
@@ -55,7 +54,7 @@
 			if($id === false) return false;			
 			$fields = array();			
 			$fields['field_id'] = $id;
-			$fields['show_in_publish'] = ($this->get('show_in_publish') == 'yes') ? 'yes' : 'no';
+			$fields['show_in_publish'] = ($this->get('hide_in_publish') == 'yes') ? 'no' : 'yes';
 			$this->_engine->Database->query("DELETE FROM `tbl_fields_".$this->handle()."` WHERE `field_id` = '$id' LIMIT 1");
 			return $this->_engine->Database->insert($fields, 'tbl_fields_' . $this->handle());			
 		}
