@@ -3,7 +3,7 @@
 -----------------------------------------------------------------------------*/	 
 
 	Symphony.Language.add({
-		'Show all versions': false,
+		'Show all versions': false
 	}); 
 	
 
