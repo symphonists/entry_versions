@@ -46,6 +46,8 @@
 			$label->setValue($input->generate() . ' Hide version history list on publish page');
 			$wrapper->appendChild($label);
 			
+			$this->appendShowColumnCheckbox($wrapper);
+			
 		}
 		
 		function commit(){
@@ -147,6 +149,11 @@
 			$wrapper->appendChild($container);
 			
 			
+		}
+		
+		public function prepareTableValue($data, XMLElement $link=NULL, $entry_id) {
+			$version = EntryVersionsManager::getLatestVersion($entry_id);
+			return sprintf('Version %d', $version);
 		}
 		
 		public function appendFormattedElement(&$wrapper, $data, $encode=false, $mode=null) {

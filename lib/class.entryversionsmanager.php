@@ -85,6 +85,15 @@ Class EntryVersionsManager {
 		
 	}
 	
+	public static function getLatestVersion($entry_id) {
+		
+		$files = General::listStructure(MANIFEST . '/versions/' . $entry_id . '/', '/.xml$/', false, 'desc');
+		if (!is_array($files['filelist'])) $files['filelist'] = array();
+		
+		return count($files['filelist']);
+		
+	}
+	
 	public function serializeEntry($entry) {
 		$entry->findDefaultData();		
 		$entry = array(
