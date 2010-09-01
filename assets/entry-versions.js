@@ -43,6 +43,8 @@
 				});
 			}
 			
+			var update_checkbox = jQuery('input[name="fields[entry-versions]"]');
+			
 			var submit_new = jQuery('input[name="action[save]"]');
 			submit_new.val('Save as new version');
 			
@@ -50,15 +52,17 @@
 			submit_update.val('Update this version');
 			submit_new.after(submit_update);
 			
-			var update_checkbox = jQuery('input[name="fields[entry-versions]"]');
-			
 			submit_new.bind('click', function() { update_checkbox.attr('checked', true); });
 			submit_update.bind('click', function() { update_checkbox.attr('checked', false); });
+			
+			if (update_checkbox.attr('disabled') == true) {
+				submit_update.attr('disabled', 'disabled');
+			}
 			
 		}
 		
 	};
 	
 	jQuery(document).ready(function() {
-		EntryVersions.init();
+		if (jQuery('.field-entry_versions').length) EntryVersions.init();
 	});
