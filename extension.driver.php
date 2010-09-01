@@ -7,8 +7,8 @@
 		public function about() {
 			return array(
 				'name'			=> 'Entry Versions',
-				'version'		=> '0.3',
-				'release-date'	=> '2010-08-30',
+				'version'		=> '0.3.1',
+				'release-date'	=> '2010-09-01',
 				'author'		=> array(
 					'name'			=> 'Nick Dunn',
 					'website'		=> 'http://nick-dunn.co.uk'

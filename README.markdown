@@ -1,8 +1,8 @@
 # Entry Versions
 
-* Version: 0.3
+* Version: 0.3.1
 * Author: Nick Dunn <http://github.com/nickdunn/>
-* Build Date: 2010-08-30
+* Build Date: 2010-09-01
 * Requirements: Symphony 2.1.0
 
 Cache a version of an entry each time it is saved for a full edit history. Recover an entry and re-publish it, and view full content history in Data Source XML.
