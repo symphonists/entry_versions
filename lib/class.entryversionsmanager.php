@@ -90,6 +90,8 @@ Class EntryVersionsManager {
 		$files = General::listStructure(MANIFEST . '/versions/' . $entry_id . '/', '/.xml$/', false, 'desc');
 		if (!is_array($files['filelist'])) $files['filelist'] = array();
 		
+		if (count($files['filelist']) == 0) return;
+		
 		natsort($files['filelist']);
 		$files['filelist'] = array_reverse($files['filelist']);
 		

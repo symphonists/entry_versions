@@ -154,13 +154,16 @@
 		public function prepareTableValue($data, XMLElement $link=NULL, $entry_id) {
 			
 			$version = EntryVersionsManager::getLatestVersion($entry_id);
+			
+			if (!$version) return sprintf('<span class="inactive">%s</span>', 'Unversioned');
+			
 			$meta = $version->documentElement;
 			
 			$timestamp = strtotime($meta->getAttribute('created-date') . ' ' . $meta->getAttribute('created-time'));
 			$date = DateTimeObj::get(__SYM_DATE_FORMAT__, $timestamp) . ' ' . DateTimeObj::get(__SYM_TIME_FORMAT__, $timestamp);
 			$author = $meta->getAttribute('created-by');
 			
-			return sprintf('Version %d <span class="inactive">(%s by %s)</span>', $version, $date, $author);
+			return sprintf('Version %d <span class="inactive">on %s by %s</span>', $version, $date, $author);
 		}
 		
 		public function appendFormattedElement(&$wrapper, $data, $encode=false, $mode=null) {
