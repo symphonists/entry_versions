@@ -68,7 +68,7 @@
 			$callback = Administration::instance()->getPageCallback();
 			$entry_id = $callback['context']['entry_id'];
 			
-			$viewing_version = $_GET['version'];
+			$viewing_version = $_GET['version'];			
 			$latest_version = EntryVersionsManager::getLatestVersion($entry_id);
 			
 			$container = new XMLElement('div', null, array('class' => 'frame'));
@@ -79,17 +79,6 @@
 				);
 				$wrapper->appendChild($container);
 				return;
-			}
-			
-			$label = new XMLElement('label');
-			
-			$minor_edit_attributes = array('checked' => 'checked');
-			if (isset($viewing_version)) $minor_edit_attributes = array('disabled' => 'disabled', 'checked' => 'checked');
-			
-			if (isset($viewing_version)) {
-				$label->appendChild(
-					Widget::Input('fields'.$fieldnamePrefix.'['.$this->get('element_name').']'.$fieldnamePostfix, 'yes', 'hidden')
-				);
 			}
 			
 			$revision_history = new XMLElement('ol');
@@ -141,7 +130,6 @@
 				
 			}
 			
-			$container->appendChild($label);
 			$container->appendChild($revision_history);
 			
 			$wrapper->appendChild($container);
