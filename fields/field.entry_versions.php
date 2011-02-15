@@ -103,7 +103,7 @@
 				
 				$meta = $entry->documentElement;
 				
-				$href = '/symphony' . $callback['pageroot'] . $callback['context']['page'] . '/' . $entry_id;
+				$href = URL . '/symphony' . $callback['pageroot'] . $callback['context']['page'] . '/' . $entry_id;
 				if ($i != 0) {
 					$href .= '/?version=' . $meta->getAttribute('version');
 				}
