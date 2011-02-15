@@ -69,10 +69,11 @@
 			$entry_id = $callback['context']['entry_id'];
 			
 			$viewing_version = $_GET['version'];
+			$latest_version = EntryVersionsManager::getLatestVersion($entry_id);
 			
 			$container = new XMLElement('div', null, array('class' => 'frame'));
-			
-			if (!$entry_id) {
+
+			if (!$entry_id || !$latest_version) {
 				$container->appendChild(
 					new XMLElement('p', 'Version 1 will be created when you save.')
 				);
