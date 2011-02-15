@@ -160,7 +160,7 @@
 			$date = DateTimeObj::get(__SYM_DATE_FORMAT__, $timestamp) . ' ' . DateTimeObj::get(__SYM_TIME_FORMAT__, $timestamp);
 			$author = $meta->getAttribute('created-by');
 			
-			return sprintf('Version %d <span class="inactive">on %s by %s</span>', $version, $date, $author);
+			return sprintf('Version %d <span class="inactive">on %s by %s</span>', $meta->getAttribute('version'), $date, $author);
 		}
 		
 		public function appendFormattedElement(&$wrapper, $data, $encode=false, $mode=null) {
