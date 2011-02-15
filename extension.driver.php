@@ -69,8 +69,8 @@
 			$callback = Administration::instance()->getPageCallback();
 					
 			if ($page instanceof contentPublish and in_array($page->_context['page'], array('new', 'edit'))) {
-				$page->addStylesheetToHead(URL . '/extensions/entry_versions/assets/entry-versions.css', 'screen', 9359351);
-				$page->addScriptToHead(URL . '/extensions/entry_versions/assets/entry-versions.js', 9359352);
+				$page->addStylesheetToHead(URL . '/extensions/entry_versions/assets/entry_versions.publish.css', 'screen', 9359351);
+				$page->addScriptToHead(URL . '/extensions/entry_versions/assets/entry_versions.publish.js', 9359352);
 			}
 			
 		}
