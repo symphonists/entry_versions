@@ -63,14 +63,14 @@
 		
 		function displayPublishPanel(&$wrapper, $data=NULL, $flagWithError=NULL, $fieldnamePrefix=NULL, $fieldnamePostfix=NULL){					
 			
-			if ($this->get('show_in_publish')=='no') return;
+			if ($this->get('show_in_publish') == 'no') return;
 			
 			$callback = Administration::instance()->getPageCallback();
 			$entry_id = $callback['context']['entry_id'];
 			
 			$viewing_version = $_GET['version'];
 			
-			$container = new XMLElement('div', null, array('class' => 'container'));
+			$container = new XMLElement('div', null, array('class' => 'frame'));
 			
 			if (!$entry_id) {
 				$container->appendChild(
@@ -84,9 +84,6 @@
 			
 			$minor_edit_attributes = array('checked' => 'checked');
 			if (isset($viewing_version)) $minor_edit_attributes = array('disabled' => 'disabled', 'checked' => 'checked');
-			
-			$input = Widget::Input('fields'.$fieldnamePrefix.'['.$this->get('element_name').']'.$fieldnamePostfix, 'yes', 'checkbox', $minor_edit_attributes);
-			$label->setValue($input->generate(false) . ' Create new version (major edit)');
 			
 			if (isset($viewing_version)) {
 				$label->appendChild(

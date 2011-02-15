@@ -1,5 +1,5 @@
 div.field-entry_versions {
-	margin-bottom: 1.75em;
+	margin: 1.5em 0;
 }
 
 div.field-entry_versions p {
@@ -10,11 +10,11 @@ div.field-entry_versions span {
 	text-align: left;
 }
 
-div.field-entry_versions div.container {
+div.field-entry_versions div.frame {
 	padding: 10px;
 	background-color: #F5F5F3;
 	border: 1px solid #E4E4DE;
-	overflow: auto;
+	overflow: auto;	
 }
 
 div.field-entry_versions label {
@@ -94,4 +94,19 @@ div.field-entry_versions a.more {
 	margin: 5px 0 0 3px;
 	display: inline-block;
 	color: #aaa;
+}
+
+#entry-versions-actions {
+	display: inline-block;
+	float: right;
+	vertical-align: baseline;
+	margin-right: 0.5em;
+}
+
+#entry-versions-actions input {
+	vertical-align: baseline;
+	padding: 0;
+	margin-right: 0.35em;
+	display: inline;
+	float: none;
 }

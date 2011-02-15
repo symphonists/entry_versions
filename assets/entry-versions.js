@@ -4,8 +4,8 @@
 
 	Symphony.Language.add({
 		'Show all versions': false,
-		'Save as new version': false,
-		'Update this version': false
+		'Save as new version (major edit)': false,
+		'Update this version (minor edit)': false
 	}); 
 	
 
@@ -43,21 +43,9 @@
 				});
 			}
 			
-			var update_checkbox = jQuery('input[name="fields[entry-versions]"]');
-			
 			var submit_new = jQuery('input[name="action[save]"]');
-			submit_new.val('Save as new version');
-			
-			var submit_update = submit_new.clone();
-			submit_update.val('Update this version');
+			var submit_update = jQuery('<label id="entry-versions-actions"><input type="checkbox" name="fields[entry-versions]" checked="checked" value="yes" />Create new version</label>');
 			submit_new.after(submit_update);
-			
-			submit_new.bind('click', function() { update_checkbox.attr('checked', true); });
-			submit_update.bind('click', function() { update_checkbox.attr('checked', false); });
-			
-			if (update_checkbox.attr('disabled') == true) {
-				submit_update.attr('disabled', 'disabled');
-			}
 			
 		}
 		
