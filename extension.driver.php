@@ -7,8 +7,8 @@
 		public function about() {
 			return array(
 				'name'			=> 'Entry Versions',
-				'version'		=> '0.3.1',
-				'release-date'	=> '2010-09-01',
+				'version'		=> '0.4.0',
+				'release-date'	=> '2011-02-16',
 				'author'		=> array(
 					'name'			=> 'Nick Dunn',
 					'website'		=> 'http://nick-dunn.co.uk'
@@ -90,6 +90,7 @@
 			$entry = $context['entry'];
 			$fields = $context['fields'];
 			
+			// is this an update to an existing version, or create a new version?
 			$is_update = ($fields['entry-versions'] != 'yes');
 			
 			// find the Entry Versions field in the section and remove its presence from
