@@ -69,6 +69,13 @@
 			$callback = Administration::instance()->getPageCallback();
 					
 			if ($page instanceof contentPublish and in_array($page->_context['page'], array('new', 'edit'))) {
+				
+				$page->addElementToHead(new XMLElement(
+					'script',
+					"Symphony.Context.add('entry_versions', " . json_encode(array('version' => $_GET['version'])) . ")",
+					array('type' => 'text/javascript')
+				), 9359350);
+				
 				$page->addStylesheetToHead(URL . '/extensions/entry_versions/assets/entry_versions.publish.css', 'screen', 9359351);
 				$page->addScriptToHead(URL . '/extensions/entry_versions/assets/entry_versions.publish.js', 9359352);
 			}
@@ -79,10 +86,19 @@
 		Just before saving a new entry, ...
 		*/
 		public function saveVersion(&$context) {
+			$section = $context['section'];
 			$entry = $context['entry'];
 			$fields = $context['fields'];
 			
-			$version = EntryVersionsManager::saveVersion($entry, $fields, ($fields['entry-versions'] != 'yes'));
+			$is_update = ($fields['entry-versions'] != 'yes');
+			
+			// find the Entry Versions field in the section and remove its presence from
+			// the copied POST array, so that its value is not saved against the version
+			foreach($section->fetchFields() as $field) {
+				if($field->get('type') == 'entry_versions') unset($fields[$field->get('element_name')]);
+			}
+			
+			$version = EntryVersionsManager::saveVersion($entry, $fields, $is_update, $entry_version_field_name);
 			$context['messages'][] = array('version', 'passed', $version);
 			
 		}

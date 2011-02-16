@@ -31,8 +31,6 @@ Class EntryVersionsManager {
 		
 		if ($new_version_number == 0) $new_version_number++;
 		
-		unset($fields['entry-versions']);
-		
 		// run custom DS to get the built XML of this entry
 		$ds = new EntryVersionsXMLDataSource(self::Context(), null, false);
 		$ds->dsParamINCLUDEDELEMENTS = array_keys($fields);
