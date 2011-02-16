@@ -14,7 +14,7 @@ Cache a version of an entry each time it is saved for a full edit history. Recov
 
 ## Compatibility
 
-Symphony | Publish Filtering
+Symphony | Entry Versions
 ------------- | -------------
 2.0 – 2.0.8 | Not compatible
 2.1.* | [1.3.1](https://github.com/nickdunn/entry_versions/tree/0.3.1) (buggy!)
