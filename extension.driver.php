@@ -95,12 +95,14 @@
 			
 			// find the Entry Versions field in the section and remove its presence from
 			// the copied POST array, so that its value is not saved against the version
-			foreach($section->fetchFields() as $field) {
-				if($field->get('type') == 'entry_versions') unset($fields[$field->get('element_name')]);
+			if (method_exists($section, 'fetchFields')) {
+				foreach($section->fetchFields() as $field) {
+					if($field->get('type') == 'entry_versions') unset($fields[$field->get('element_name')]);
+				}
+
+				$version = EntryVersionsManager::saveVersion($entry, $fields, $is_update, $entry_version_field_name);
+				$context['messages'][] = array('version', 'passed', $version);
 			}
-			
-			$version = EntryVersionsManager::saveVersion($entry, $fields, $is_update, $entry_version_field_name);
-			$context['messages'][] = array('version', 'passed', $version);
 			
 		}
 		
