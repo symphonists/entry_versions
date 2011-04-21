@@ -90,14 +90,33 @@
 			$entry = $context['entry'];
 			$fields = $context['fields'];
 			
+			// if saved from an event, no section is passed, so resolve
+			// section object from the entry
+			if(is_null($section)) {
+				$sm = new SectionManager(Symphony::Engine());
+				$section = $sm->fetch($entry->get('section_id'));
+			}
+			
+			// if we *still* can't resolve a section then something is 
+			// probably quite wrong, so don't try and save version history
+			if(is_null($section)) return;
+			
+			// does this section have en Entry Version field, should we store the version?
+			$has_entry_versions_field = FALSE;
+			
 			// is this an update to an existing version, or create a new version?
 			$is_update = ($fields['entry-versions'] != 'yes');
 			
 			// find the Entry Versions field in the section and remove its presence from
 			// the copied POST array, so that its value is not saved against the version
 			foreach($section->fetchFields() as $field) {
-				if($field->get('type') == 'entry_versions') unset($fields[$field->get('element_name')]);
+				if($field->get('type') == 'entry_versions') {
+					unset($fields[$field->get('element_name')]);
+					$has_entry_versions_field = TRUE;
+				}
 			}
+			
+			if(!$has_entry_versions_field) return;
 			
 			$version = EntryVersionsManager::saveVersion($entry, $fields, $is_update, $entry_version_field_name);
 			$context['messages'][] = array('version', 'passed', $version);

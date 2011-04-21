@@ -5,13 +5,6 @@ require_once(TOOLKIT . '/class.xsltprocess.php');
 
 Class EntryVersionsManager {
 	
-	public function Context() {
-		if(class_exists('Frontend')){
-			return (object)Frontend::instance();
-		}
-		return (object)Administration::instance();
-	}
-	
 	// saves an entry to disk
 	public static function saveVersion($entry, $fields, $is_update) {
 		
@@ -32,7 +25,7 @@ Class EntryVersionsManager {
 		if ($new_version_number == 0) $new_version_number++;
 		
 		// run custom DS to get the built XML of this entry
-		$ds = new EntryVersionsXMLDataSource(self::Context(), null, false);
+		$ds = new EntryVersionsXMLDataSource(Symphony::Engine(), null, false);
 		$ds->dsParamINCLUDEDELEMENTS = array_keys($fields);
 		$ds->dsParamFILTERS['id'] = $entry->get('id');
 		$ds->dsSource = (string)$entry->get('section_id');
@@ -47,7 +40,7 @@ Class EntryVersionsManager {
 			file_get_contents(EXTENSIONS . '/entry_versions/lib/entry-version.xsl'),
 			array(
 				'version' => $new_version_number,
-				'created-by' => ((self::Context()->Author) ? self::Context()->Author->getFullName() : ''),
+				'created-by' => ((Symphony::Engine()->Author) ? Symphony::Engine()->Author->getFullName() : 'frontend user'),
 				'created-date' => date('Y-m-d', time()),
 				'created-time' => date('H:i', time()),
 			)
@@ -121,7 +114,7 @@ Class EntryVersionsManager {
 			file_get_contents(MANIFEST . '/versions/' . $entry_id . '/' . $version . '.dat')
 		);
 		
-		$entryManager = new EntryManager(self::Context());		
+		$entryManager = new EntryManager(Symphony::Engine());		
 		$new_entry = $entryManager->create();
 		$new_entry->set('id', $entry['id']);
 		$new_entry->set('author_id', $entry['author_id']);

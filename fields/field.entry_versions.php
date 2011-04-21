@@ -12,11 +12,17 @@
 		}
 				
 		public function processRawFieldData($data, &$status, $simulate=false, $entry_id=null) {	
-			$status = self::__OK__;			
+			$status = self::__OK__;
+			
+			$author = 'frontend user';
+			if(Symphony::Engine() instanceOf Administration) {
+				$author = Administration::instance()->Author->getFullName();
+			}
+			
 			return array(
 				'value' => '',
 				'last_modified' => DateTimeObj::get('Y-m-d H:i:s', time()),
-				'last_modified_author' => Administration::instance()->Author->getFullName()
+				'last_modified_author' => $author
 			);
 		}
 		
