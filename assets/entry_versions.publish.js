@@ -52,7 +52,7 @@ var EntryVersions = {
 			e.preventDefault();
 		});
 		
-		var submit_new = jQuery('input[name="action[save]"]');
+		var submit_new = jQuery('.actions > input[name="action[save]"]');
 		var submit_update = jQuery('<label id="entry-versions-actions"><input type="checkbox" name="fields[entry-versions]" checked="checked" value="yes" />' + Symphony.Language.get('Create new version') + '</label>');
 		submit_new.after(submit_update);
 		
