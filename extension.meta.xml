@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension id="entry_versions">
+	<name>Entry Versions</name>
+	<description>Super-easy version history of your entry content.</description>
+	<repo type="github">https://github.com/nickdunn/entry_versions</repo>
+	<url type="discuss">http://symphony-cms.com/discuss/thread/49295/</url>
+	<types>
+		<type>Field Types</type>
+	</types>
+	<authors>
+		<author>
+			<name github="nickdunn" symphony="nickdunn" twitter="nickdunn">Nick Dunn</name>
+			<website>http://nick-dunn.co.uk</website>
+		</author>
+	</authors>
+	<releases>
+		<release version="0.4.1" date="2011-04-21" min="2.2" />
+		<release version="0.3.1" date="2011-04-21" min="2.1.0" max="2.1.2" />
+	</releases>
+</extension>
